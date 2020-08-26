@@ -25,4 +25,9 @@ public interface UserMapper {
     int deleteUserById(Integer id);
 
     int addAfterGetId(User user);
+
+    /***动态SQL**/
+    User selectUserById1(Integer id);
+    User selectUserById2(Integer id);
+    User selectUserById3(Integer id);
 }

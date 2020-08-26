@@ -30,6 +30,7 @@
     </environments>
     <!--注册Mapper.xml-->
     <mappers>
-        <mapper resource="com/zmq/mapper/UserMapper.xml"/>
+        <!--<mapper resource="com/zmq/mapper/UserMapper.xml"/>-->
+        <package name="com.zmq.mapper"/>
     </mappers>
 </configuration>

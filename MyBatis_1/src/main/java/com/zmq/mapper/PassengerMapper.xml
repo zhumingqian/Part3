@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zmq.mapper.PassengerMapper">
+    <!--一对一查询   使用结果集接收-->
+    <!--结果映射-->
+    <resultMap id="queryPassengerMap" type="Passenger">
+        <id property="id" column="id" />
+        <result property="name" column="name" />
+        <result property="sex" column="sex" />
+        <result property="birthday" column="birthday" />
+
+        <!--
+            关系表中数据的封装规则
+            Passenger 和 Passport  为   OneToOne 一对一规则
+            Passenger里面封装了Passport对象
+        -->
+        <association property="passport" javaType="Passport">
+            <id property="id" column="passport_id" />
+            <result property="nationality" column="nationality" />
+            <result property="expire" column="expire" />
+        </association>
+    </resultMap>
+
+    <!--p2.id 起别名  避免与p1.id冲突-->
+    <select id="queryPassengerById" resultType="com.zmq.entity.Passenger" resultMap="queryPassengerMap">
+        select p1.id,p1.name,p1.birthday,p1.sex,p2.id as passport_id, p2.nationality, p2.expire, p2.passenger_id from
+            passenger p1
+        INNER JOIN passport p2
+        on p1.id = p2.passenger_id
+        where p1.id = #{id}
+    </select>
+</mapper>

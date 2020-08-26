@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zmq.mapper.DepartmentMapper">
+    <!--使用结果集接收-->
+    <resultMap id="queryEmployeeResult" type="Department">
+        <id property="id" column="id" />
+        <result property="name" column="name"/>
+        <result property="location" column="location" />
+
+        <!--使用集合接收多个对象-->
+        <collection property="employeeList" ofType="Employee">
+            <id property="id" column="emp_id" />
+            <result property="name" column="emp_name" />
+            <result property="salary" column="salary" />
+        </collection>
+    </resultMap>
+
+
+
+    <!--通过部门id查询员工  一对多关系 -->
+    <select id="queryEmployeeByDepartmentId" resultType="Department" resultMap="queryEmployeeResult">
+        select d.id, d.name, d.location ,e.id as emp_id, e.name as emp_name, e.salary, e.department_id
+        from department d
+        INNER JOIN employee e
+        on d.id = e.department_id
+        where d.id = #{id}
+    </select>
+</mapper>
