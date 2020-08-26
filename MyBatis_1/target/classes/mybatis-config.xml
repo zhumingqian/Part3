@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--
+        default:默认访问的jdbc===可以添加多个jdbc环境 与相关jdbc的 id  对应
+    -->
+    <!--注入配置文件-->
+    <properties resource="jdbc.properties" />
+    <typeAliases>
+        <!--指定实体类别名-->
+        <!--<typeAlias type="com.zmq.entity.User" alias="user" />-->
+
+        <!--指定包名,将该包下的所有实体类的类名作为别名-->
+        <package name="com.zmq.entity"/>
+    </typeAliases>
+    <environments default="MySqlDB">
+        
+        <environment id="MySqlDB">
+            
+            <transactionManager type="JDBC"/>
+            <dataSource type="org.apache.ibatis.datasource.pooled.PooledDataSourceFactory">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!--注册Mapper.xml-->
+    <mappers>
+        <mapper resource="com/zmq/mapper/UserMapper.xml"/>
+    </mappers>
+</configuration>

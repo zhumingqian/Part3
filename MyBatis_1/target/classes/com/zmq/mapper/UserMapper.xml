@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zmq.mapper.UserMapper">
+    <!--开启二级缓存-->
+    <cache />
+
+
+
+    <select id="selectUserById" resultType="com.zmq.entity.User" parameterType="int">
+        select name from test
+        where id = #{id}
+    </select>
+    <select id="selectUserByIdAndAge" resultType="com.zmq.entity.User">
+        select * from test
+        where id = #{arg0} and age = #{arg1}
+    </select>
+    <!--使用concat拼接%-->
+    <select id="selectUserByLikeName" resultType="com.zmq.entity.User">
+
+        select * from test
+        where name like concat('%',#{name},'%')
+    </select>
+    <select id="selectUserByMap" resultType="com.zmq.entity.User">
+        select * from test
+        where id = #{mId} and age = #{mAge}
+    </select>
+
+    <update id="updateUserById" parameterType="User">
+        update test
+        set name = #{name} ,age = #{age}
+        where id = #{id}
+    </update>
+
+
+    <insert id="addUser" parameterType="User">
+        insert into test
+        values( null , #{name} , #{age} )
+    </insert>
+
+    <delete id="deleteUserById">
+        delete from test
+        where id = #{id}
+    </delete>
+
+    <!--主键回填   在添加完数据之后返回主键值-->
+    <!--<insert id="addAfterGetId">
+        <selectKey keyProperty="id" resultType="int" order="AFTER">
+            select last_insert_id()
+        </selectKey>
+        insert into test values (null, #{name}, #{age})
+    </insert>-->
+    <!--主键回填  方式2-->
+    <insert id="addAfterGetId" keyProperty="id" useGeneratedKeys="true">
+        insert into test values (null, #{name}, #{age})
+    </insert>
+</mapper>
