@@ -9,7 +9,7 @@ import com.zmq.dao.UserDaoImpl;
  * @since 1.8
  */
 public class UserServiceImpl implements UserService {
-
+    /*使用IoC  控制反转  降低耦合性*/
     private UserDao userDao;
 
     @Override

@@ -2,6 +2,7 @@ package com.zmq;
 
 import com.zmq.bean.MyBean;
 import com.zmq.dao.UserDaoImpl;
+import com.zmq.service.UserServiceImpl;
 import com.zmq.tools.MyFactory;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -32,5 +33,12 @@ public class test1 {
         MyFactory myFactory = new MyFactory();
         MyBean myBean = (MyBean) applicationContext.getBean("mb");
         myBean.show();
+    }
+
+    @Test
+    public void test3(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        UserServiceImpl userServiceImpl = (UserServiceImpl) applicationContext.getBean("userServiceImpl");
+        userServiceImpl.a1();
     }
 }
