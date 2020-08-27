@@ -17,8 +17,6 @@ import java.util.Map;
  * @since 1.8
  */
 public class TestMyBatis {
-
-
     /**
      * 查询测试
      * @throws IOException
@@ -34,7 +32,7 @@ public class TestMyBatis {
         //获得代理对象
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         //通过代理对象获得结果
-        System.out.println(userMapper.selectUserById(1).getName());
+        System.out.println(userMapper.selectUserById(6).getName());
     }
 
     /**
