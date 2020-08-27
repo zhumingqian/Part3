@@ -4,20 +4,23 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.zmq.mapper.UserMapper">
+
     <select id="selectUserById" resultType="com.zmq.entity.User" parameterType="int">
         select name from test
         where id = #{id}
     </select>
+
     <select id="selectUserByIdAndAge" resultType="com.zmq.entity.User">
         select * from test
         where id = #{arg0} and age = #{arg1}
     </select>
+
     <!--使用concat拼接%-->
     <select id="selectUserByLikeName" resultType="com.zmq.entity.User">
-
         select * from test
         where name like concat('%',#{name},'%')
     </select>
+
     <select id="selectUserByMap" resultType="com.zmq.entity.User">
         select * from test
         where id = #{mId} and age = #{mAge}
@@ -28,7 +31,6 @@
         set name = #{name} ,age = #{age}
         where id = #{id}
     </update>
-
 
     <insert id="addUser" parameterType="User">
         insert into test
@@ -56,6 +58,8 @@
 
 
     <!-- ************************动态SQL****************************** -->
+
+    <!--sql标签测试-->
     <sql id="userSelectSql">
         select id,name,age
     </sql>
@@ -65,10 +69,63 @@
         where id = #{id}
     </select>
 
+    <!--where标签测试-->
     <select id="selectUserById2" resultType="com.zmq.entity.User">
-
+        select id,name,age
+        from test
+        <where>
+            <if test="id != null and id != ''">
+                and id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="age != null and age != ''">
+                and age = #{age}
+            </if>
+        </where>
     </select>
-    <select id="selectUserById3" resultType="com.zmq.entity.User">
 
+    <!--set标签测试-->
+    <update id="selectUserById3">
+        update test
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="age != null">
+                age = #{age},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--trim标签测试-->
+    <!--<trim prefix="WHERE" prefixOverrides="AND|OR"> 增加WHERE前缀，自动忽略前缀 -->
+    <select id="selectUserById4" resultType="com.zmq.entity.User">
+        select id,name,age
+        from test
+
+        <trim prefix="where" prefixOverrides="and">
+            <if test="id != null and id != ''">
+                and id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="age != null and age != ''">
+                and age = #{age}
+            </if>
+        </trim>
+    </select>
+
+    <!--foreach标签测试-->
+    <select id="selectUserById5" resultType="com.zmq.entity.User">
+        select id,name,age
+        from test
+        where id in
+        <foreach collection="list" open="(" close=")" separator="," item="id">
+            #{id}
+        </foreach>
     </select>
 </mapper>

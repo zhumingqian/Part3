@@ -2,6 +2,7 @@ package com.zmq.mapper;
 
 import com.zmq.entity.User;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -28,6 +29,9 @@ public interface UserMapper {
 
     /***动态SQL**/
     User selectUserById1(Integer id);
-    User selectUserById2(Integer id);
-    User selectUserById3(Integer id);
+    List<User> selectUserById2(User user);
+    int selectUserById3(User user);
+    List<User> selectUserById4(User user);
+
+    List<User> selectUserById5(List<Integer> id);
 }
