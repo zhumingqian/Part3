@@ -28,4 +28,19 @@
         on d.id = e.department_id
         where d.id = #{id}
     </select>
+
+
+    <resultMap id="queryDepartment" type="Department">
+        <id property="id" column="id" />
+        <result property="name" column="name" />
+        <result property="location" column="location" />
+        <collection property="employeeList" column="id" ofType="Employee" select="com.zmq.mapper.EmployeeMapper.queryEmployee" />
+    </resultMap>
+
+    <!--不使用关联查询-->
+    <select id="queryDepartmentByDid" resultType="com.zmq.entity.Department" resultMap="queryDepartment">
+        select id, name, location
+        from department
+        where id = #{id}
+    </select>
 </mapper>

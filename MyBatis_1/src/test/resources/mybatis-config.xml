@@ -15,6 +15,9 @@
         <!--指定包名,将该包下的所有实体类的类名作为别名-->
         <package name="com.zmq.entity"/>
     </typeAliases>
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>
+    </plugins>
     <environments default="MySqlDB">
         
         <environment id="MySqlDB">

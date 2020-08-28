@@ -1,5 +1,7 @@
 package com.zmq.mapper;
 
+import com.github.pagehelper.IPage;
+import com.github.pagehelper.PageHelper;
 import com.zmq.entity.User;
 import com.zmq.tools.MyBatisUtils;
 import org.junit.Test;
@@ -86,6 +88,7 @@ public class DynamicSQLTest {
         listId.add(6);
         listId.add(7);
         listId.add(8);
+        listId.add(9);
         List<User> userList = userMapper.selectUserById5(listId);
         userList.stream().forEach((e)-> System.out.println(e));
     }

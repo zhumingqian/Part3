@@ -4,6 +4,6 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void a1() {
-        System.out.println("userDao1");
+        System.out.println("userDao");
     }
 }

@@ -5,11 +5,11 @@
 
     <bean id="mb" class="com.zmq.bean.MyBean" ></bean>
 
-<!--    <bean id="userServiceImpl" class="com.zmq.service.UserServiceImpl" >-->
-<!--        <property name="userDao" ref="userDaoImpl" />-->
-<!--    </bean>-->
+    <bean id="userServiceImpl" class="com.zmq.service.UserServiceImpl" >
+        <property name="userDao" ref="userDaoImpl" />
+    </bean>
 
-<!--    <bean id="userDaoImpl" class="com.zmq.dao.UserDaoImpl"></bean>-->
+    <bean id="userDaoImpl" class="com.zmq.dao.UserDaoImpl"></bean>
 
 
     <!--依赖注入-->
@@ -84,9 +84,8 @@
 
 
     <!--自动注入-->
-    <bean id="userService" class="com.zmq.service.UserServiceImpl" autowire="byType" />
-    <bean id="userDao" class="com.zmq.dao.UserDaoImpl" />
-
+<!--    <bean id="userService" class="com.zmq.service.UserServiceImpl" autowire="byType" />-->
+<!--    <bean id="userDao" class="com.zmq.dao.UserDaoImpl" />-->
 
     <!--复杂对象注入-->
     <bean id="mfb" class="com.zmq.tools.MyFactoryBean" />

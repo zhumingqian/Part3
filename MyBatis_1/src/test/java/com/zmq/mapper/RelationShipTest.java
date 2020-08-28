@@ -50,4 +50,12 @@ public class RelationShipTest {
 
     }
 
+
+    @Test
+    public void testQueryDepartment(){
+        DepartmentMapper departmentMapper = MyBatisUtils.getProxyObj(DepartmentMapper.class);
+        Department department = departmentMapper.queryDepartmentByDid(1);
+        System.out.println(department);
+    }
+
 }

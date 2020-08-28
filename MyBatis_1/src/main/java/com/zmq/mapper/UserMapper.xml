@@ -128,4 +128,8 @@
             #{id}
         </foreach>
     </select>
+
+    <select id="queryAllUser" resultType="com.zmq.entity.User">
+        select * from test
+    </select>
 </mapper>

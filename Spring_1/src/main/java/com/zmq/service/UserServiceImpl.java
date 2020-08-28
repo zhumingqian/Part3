@@ -10,15 +10,15 @@ import com.zmq.dao.UserDaoImpl;
  */
 public class UserServiceImpl implements UserService {
     /*使用IoC  控制反转  降低耦合性*/
-    private UserDao userDao;
+//    private UserDao userDaoImpl;
 
     @Override
     public void a1() {
         System.out.println("userService");
-        userDao.a1();
+//        userDaoImpl.a1();
     }
 
-    public void setUserDao(UserDao userDao) {
-        this.userDao = userDao;
-    }
+//    public void setUserDao(UserDao userDaoImpl) {
+//        this.userDaoImpl = userDaoImpl;
+//    }
 }

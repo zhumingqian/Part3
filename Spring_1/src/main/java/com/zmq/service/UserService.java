@@ -6,5 +6,5 @@ package com.zmq.service;
  * @since 1.8
  */
 public interface UserService {
-    public void a1();
+    void a1();
 }

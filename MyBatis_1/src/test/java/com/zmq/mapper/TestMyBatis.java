@@ -1,4 +1,7 @@
 package com.zmq.mapper;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.zmq.entity.User;
 import com.zmq.tools.MyBatisUtils;
 import org.apache.ibatis.io.Resources;
@@ -9,6 +12,7 @@ import org.junit.Test;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -178,4 +182,18 @@ public class TestMyBatis {
     }
 
 
+    @Test
+    public void testQueryAllUser(){
+        UserMapper userMapper = MyBatisUtils.getProxyObj(UserMapper.class);
+        PageHelper.startPage(2,3);
+        List<User> userList = userMapper.queryAllUser();
+//        for (User user : userList) {
+//            System.out.println(user);
+//        }
+        PageInfo<User> pageInfo = new PageInfo<>(userList);
+        List<User> infoList = pageInfo.getList();
+        for (User user : infoList) {
+            System.out.println(user);
+        }
+    }
 }

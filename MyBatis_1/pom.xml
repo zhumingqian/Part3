@@ -46,6 +46,12 @@
             <artifactId>druid</artifactId>
             <version>1.1.23</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>5.2.0</version>
+        </dependency>
     </dependencies>
 
     <!--解决mapper.xml存放在resources以外路径中的读取问题-->

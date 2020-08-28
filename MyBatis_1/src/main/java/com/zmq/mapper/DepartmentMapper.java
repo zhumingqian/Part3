@@ -19,4 +19,7 @@ public interface DepartmentMapper {
      */
 
     Department queryEmployeeByDepartmentId(Integer id);
+
+
+    Department queryDepartmentByDid(Integer id);
 }

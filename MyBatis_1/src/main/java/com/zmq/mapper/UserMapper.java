@@ -29,9 +29,14 @@ public interface UserMapper {
 
     /***动态SQL**/
     User selectUserById1(Integer id);
+
     List<User> selectUserById2(User user);
+
     int selectUserById3(User user);
+
     List<User> selectUserById4(User user);
 
     List<User> selectUserById5(List<Integer> id);
+
+    List<User> queryAllUser();
 }
