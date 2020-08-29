@@ -9,11 +9,11 @@ public class AspectAutoProxy {
 
 
     public void startProxyTestService(){
-        System.out.println("启动Aspect动态代理...");
+        System.out.println("头部增强Aspect动态代理...");
     }
 
     public void endProxyTestService(){
-        System.out.println("尾部Aspect动态代理...");
+        System.out.println("尾部增强Aspect动态代理...");
     }
 
 }
