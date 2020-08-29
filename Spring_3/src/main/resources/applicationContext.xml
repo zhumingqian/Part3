@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+    <!--使用配置文件的方式进行AOP-->
+    <aop:aspectj-autoproxy />
+    <!--代理对象bean-->
+    <bean id="testService" class="com.zmq.service.impl.TestServiceImpl" />
+    <!--辅助对象-->
+    <bean id="aspectAutoProxy" class="com.zmq.aspect.AspectAutoProxy" />
+    <!--配置代理-->
+    <aop:config>
+        <aop:aspect ref="aspectAutoProxy" >
+            <!--配置-->
+            <aop:pointcut id="asp" expression="execution(* *(..))"/>
+            <!--配置增强通知-->
+            <aop:before method="startProxyTestService" pointcut-ref="asp" />
+            <aop:after method="endProxyTestService" pointcut-ref="asp" />
+        </aop:aspect>
+    </aop:config>
+
+
+</beans>
