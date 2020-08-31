@@ -10,6 +10,8 @@
         <module name="Spring_3" />
         <module name="Spring_2" />
         <module name="Spring_1" />
+        <module name="Spring_Mybatis" />
+        <module name="Spring_Mybais_Annotation" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8" />
