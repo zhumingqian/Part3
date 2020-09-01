@@ -1,5 +1,7 @@
 package com.zmq.entity;
 
+import lombok.Data;
+
 /**
  * @author zmq
  * @date 2020/8/28

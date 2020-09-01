@@ -3,6 +3,7 @@
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/MyBatis_1" />
+    <file type="web" url="file://$PROJECT_DIR$/SpingMVC_1" />
     <file type="web" url="file://$PROJECT_DIR$/Spring_Mybais_Annotation" />
     <file type="web" url="file://$PROJECT_DIR$/Spring_Mybatis" />
   </component>
@@ -19,6 +20,7 @@
         <option value="$PROJECT_DIR$/Spring_3/pom.xml" />
         <option value="$PROJECT_DIR$/Spring_Mybatis/pom.xml" />
         <option value="$PROJECT_DIR$/Spring_Mybais_Annotation/pom.xml" />
+        <option value="$PROJECT_DIR$/SpingMVC_1/pom.xml" />
       </list>
     </option>
   </component>
