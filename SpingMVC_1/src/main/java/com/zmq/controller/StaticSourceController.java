@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @Author ZMQ
  * @Date 2020/9/1
  * @since 1.8
+ * 静态资源问题
  */
 @Controller
 @RequestMapping("/forw")

@@ -20,4 +20,36 @@
         <!--后缀-->
         <property name="suffix" value=".jsp" />
     </bean>
+
+    <mvc:annotation-driven>
+        <!--安装fastjson转换器-->
+        <mvc:message-converters>
+            <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+                <!--声明转换类型为:json-->
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>application/json</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <!--声明异常解析器-->
+    <bean class="com.zmq.exception.MyException" />
+
+    <!--配置拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/><!--拦截多层的请求路径-->
+            <mvc:exclude-mapping path="/json/fast"/><!--不拦截该路径-->
+            <bean class="com.zmq.interceptor.MyInterceptor" /><!--自定义的拦截器-->
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <!--配置上传解析器-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" >
+        <!--配置可上传文件大小-->
+        <property name="maxUploadSize" value="1048576" />
+    </bean>
 </beans>

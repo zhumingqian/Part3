@@ -6,6 +6,8 @@
     <file type="web" url="file://$PROJECT_DIR$/SpingMVC_1" />
     <file type="web" url="file://$PROJECT_DIR$/Spring_Mybais_Annotation" />
     <file type="web" url="file://$PROJECT_DIR$/Spring_Mybatis" />
+    <file type="web" url="file://$PROJECT_DIR$/SSM" />
+    <file type="web" url="file://$PROJECT_DIR$/SSM_2" />
   </component>
   <component name="JavaScriptSettings">
     <option name="languageLevel" value="ES6" />
@@ -21,6 +23,8 @@
         <option value="$PROJECT_DIR$/Spring_Mybatis/pom.xml" />
         <option value="$PROJECT_DIR$/Spring_Mybais_Annotation/pom.xml" />
         <option value="$PROJECT_DIR$/SpingMVC_1/pom.xml" />
+        <option value="$PROJECT_DIR$/SSM/pom.xml" />
+        <option value="$PROJECT_DIR$/SSM_2/pom.xml" />
       </list>
     </option>
   </component>

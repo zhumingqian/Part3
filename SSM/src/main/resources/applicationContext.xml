@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--注解扫描-->
+    <context:component-scan base-package="com.zmq" use-default-filters="true">
+        <!--包含@Controller注解不扫描-->
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+    <!--记载jdbc.properties配置文件-->
+    <context:property-placeholder location="classpath:jdbc.properties" />
+    <!--配置数据源-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" >
+        <!--配置数据库信息-->
+        <property name="driverClassName" value="${jdbc.driver}" />
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+    </bean>
+    <!--配置SqlSessionFactory-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" >
+        <!--注入数据源-->
+        <property name="dataSource" ref="dataSource" />
+        <!--扫描mapper.xml文件-->
+        <property name="mapperLocations">
+            <list>
+                <value>classpath:com/zmq/mapper/**/*.xml</value>
+            </list>
+        </property>
+        <!--实体类起别名-->
+        <property name="typeAliasesPackage" value="com.zmq.entity" />
+
+        <!--配置pageHepler分页插件-->
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor" />
+            </array>
+        </property>
+    </bean>
+    <!--配置MapperScannerConfigure-->
+    <bean id="mapperScannerConfigure" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--扫描mapper的接口文件-->
+        <property name="basePackage" value="com.zmq.mapper" />
+        <!--配置SqlSessionFactory-->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+    </bean>
+    <!--配置事务控制器-->
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!--注入数据源-->
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+    <!--配置增强-->
+    <tx:advice id="txAdvice" transaction-manager="txManager">
+        <tx:attributes>
+            <tx:method name="query*" read-only="true" propagation="SUPPORTS"/>
+            <tx:method name="select*" read-only="true" propagation="SUPPORTS"/>
+            <tx:method name="find*" read-only="true" propagation="SUPPORTS"/>
+            <tx:method name="get*" read-only="true" propagation="SUPPORTS"/>
+            <!--其他-->
+            <tx:method name="*" read-only="false" propagation="REQUIRED" rollback-for="Exception" />
+        </tx:attributes>
+    </tx:advice>
+    <!--配置切面-->
+    <aop:config>
+        <!--设置切点-->
+        <aop:pointcut id="pt" expression="execution(* com.zmq.service..*.*(..))"/>
+        <!--设置切面-->
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="pt" />
+    </aop:config>
+
+</beans>
