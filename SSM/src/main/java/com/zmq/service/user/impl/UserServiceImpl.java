@@ -46,4 +46,44 @@ public class UserServiceImpl implements UserService {
         PageInfo<User> pageInfo = new PageInfo<>(userList);
         return pageInfo;
     }
+
+    /**
+     * 添加信息
+     * @param user
+     * @return
+     */
+    @Override
+    public int addUser(User user) {
+        return userMapper.addUser(user);
+    }
+
+    /**
+     * 通过id查询用户信息
+     * @param id
+     * @return
+     */
+    @Override
+    public User queryUserById(Integer id) {
+        return userMapper.queryUserById(id);
+    }
+
+    /**
+     * 通过id修改信息
+     * @param user
+     * @return
+     */
+    @Override
+    public int updateUserInfoById(User user) {
+        return userMapper.updateUserInfoById(user);
+    }
+
+    /**
+     * 通过id删除信息
+     * @param id
+     * @return
+     */
+    @Override
+    public int deleteUsetById(Integer id) {
+        return userMapper.deleteUserById(id);
+    }
 }

@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="MyBatis_1" />
+        <module name="SpingMVC_1" />
         <module name="SSM" />
         <module name="Spring_3" />
         <module name="Spring_2" />
@@ -15,7 +16,8 @@
         <module name="SSM_2" />
         <module name="Spring_Mybatis" />
         <module name="Spring_Mybais_Annotation" />
-        <module name="SpingMVC_1" />
+        <module name="log" />
+        <module name="quartz" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8" />

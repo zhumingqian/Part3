@@ -35,6 +35,12 @@
         </property>
         <!--给实体类配置别名-->
         <property name="typeAliasesPackage" value="com.zmq.entity" />
+        <!--配置分页插件-->
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor" />
+            </array>
+        </property>
     </bean>
     <!--配置MapperScannerConfigure-->
     <bean id="mapperScannerConfigure" class="org.mybatis.spring.mapper.MapperScannerConfigurer">

@@ -9,9 +9,9 @@
 <html>
 <head>
     <title>信息</title>
-    <script src="js/jquery-3.4.1.js" charset="UTF-8"></script>
-    <script src="js/bootstrap.js" charset="UTF-8"></script>
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <script src="${pageContext.request.contextPath}/js/jquery-3.4.1.js" charset="UTF-8"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap.js" charset="UTF-8"></script>
+    <link href="${pageContext.request.contextPath}/css/bootstrap.css" rel="stylesheet">
 </head>
 <body>
     <table class="table">
@@ -30,34 +30,68 @@
                     <td>${u.name}</td>
                     <td>${u.age}</td>
                     <td>
-                        <a href="#">删除</a>
-                        <a href="#">编辑</a>
+                        <a href="${pageContext.request.contextPath}/page/toUpdateInfo/${u.id}">编辑</a>
+                        <a href="${pageContext.request.contextPath}/page/deleteInfo/${u.id}">删除</a>
                     </td>
                 </tr>
             </c:forEach>
         </tbody>
         <tfoot>
             <tr>
+                <td colspan="4">
+                    <a href="${pageContext.request.contextPath}/addInfo.jsp">添加信息</a>
+                </td>
+            </tr>
+            <tr>
                <td colspan="4">
                    <center>
                        <nav aria-label="Page navigation example">
                            <ul class="pagination">
+                               <c:if test="${pageInfo.pageNum == 1}">
+                                   <li class="page-item disabled">
+                                       <a class="page-link" href="javaScript:void(0)">
+                                           Previous
+                                       </a>
+                                   </li>
+                               </c:if>
                                <c:if test="${pageInfo.pageNum > 1}">
-                               <li
-                                       class="page-item"><a class="page-link" href="paginationQuery?currentPage=${pageInfo.pageNum-1}">
-                                   Previous</a></li>
+                               <li class="page-item">
+                                   <a class="page-link" href="${pageContext.request.contextPath}/page/paginationQuery/${pageInfo.pageNum-1}">
+                                       Previous
+                                   </a>
+                               </li>
                                </c:if>
 
                                <c:forEach begin="1" end="${pageInfo.pages}" varStatus="st">
-                               <li class="page-item"><a class="page-link"
-                                                        href="paginationQuery?currentPage=${st.index}">${st.index}</a></li>
+                                <c:if test="${pageInfo.pageNum == st.index}">
+                                    <li class="page-item  active">
+                                        <a class="page-link" href="${pageContext.request.contextPath}/page/paginationQuery/${st.index}">
+                                                ${st.index}
+                                        </a>
+                                    </li>
+                                </c:if>
+                               <c:if test="${pageInfo.pageNum != st.index}">
+                                   <li class="page-item">
+                                       <a class="page-link" href="${pageContext.request.contextPath}/page/paginationQuery/${st.index}">
+                                               ${st.index}
+                                       </a>
+                                   </li>
+                               </c:if>
                                </c:forEach>
 
                                <c:if test="${pageInfo.pageNum < pageInfo.pages}">
-                               <li
-                                       class="page-item"><a class="page-link"
-                                                            href="paginationQuery?currentPage=${pageInfo.pageNum+1}">Next
-                               </a></li>
+                               <li class="page-item">
+                                   <a class="page-link" href="${pageContext.request.contextPath}/page/paginationQuery/${pageInfo.pageNum+1}">
+                                       Next
+                                   </a>
+                               </li>
+                               </c:if>
+                               <c:if test="${pageInfo.pageNum == pageInfo.pages}">
+                                   <li class="page-item disabled">
+                                       <a class="page-link" href="javaScript:void(0)">
+                                            Next
+                                       </a>
+                                   </li>
                                </c:if>
                            </ul>
                        </nav>

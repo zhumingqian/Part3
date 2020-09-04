@@ -1,15 +1,15 @@
 <%--
   Author: ZhuMingQ
   Date: 2020/9/3
-  Time: 8:39
+  Time: 16:32
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html>
 <head>
-    <title>index</title>
+    <title>error</title>
 </head>
 <body>
-    <a href="${pageContext.request.contextPath}/page/paginationQuery/1" >Touch</a>
+    <h2>操作失败!</h2>
 </body>
 </html>

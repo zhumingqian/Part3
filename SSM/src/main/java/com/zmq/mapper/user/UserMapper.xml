@@ -5,6 +5,29 @@
 <mapper namespace="com.zmq.mapper.user.UserMapper">
 
     <select id="queryAllUser" resultType="com.zmq.entity.User">
-        select * from test
+        select *
+        from test
     </select>
+
+    <insert id="addUser">
+        insert into test(name, age)
+        VALUES(#{name},#{age})
+    </insert>
+
+    <select id="queryUserById" resultType="com.zmq.entity.User">
+        select id,name,age
+        from test
+        where id = #{id}
+    </select>
+
+    <update id="updateUserInfoById">
+        update test
+        set name = #{name} , age = #{age}
+        where id = #{id}
+    </update>
+
+    <delete id="deleteUserById">
+        delete from test
+        where id = #{id}
+    </delete>
 </mapper>

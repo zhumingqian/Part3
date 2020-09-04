@@ -25,6 +25,8 @@
         <option value="$PROJECT_DIR$/SpingMVC_1/pom.xml" />
         <option value="$PROJECT_DIR$/SSM/pom.xml" />
         <option value="$PROJECT_DIR$/SSM_2/pom.xml" />
+        <option value="$PROJECT_DIR$/quartz/pom.xml" />
+        <option value="$PROJECT_DIR$/log/pom.xml" />
       </list>
     </option>
   </component>
