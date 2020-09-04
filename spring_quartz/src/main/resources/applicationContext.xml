@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--定义工作任务的job 配置JobDetailFactoryBean-->
+    <bean id="jobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <!--指定job名称-->
+        <property name="name" value="job1" />
+        <!--指定group名称-->
+        <property name="group" value="group1" />
+        <!--指定具体job类-->
+        <property name="jobClass" value="com.demo.quartz.MyJob" />
+    </bean>
+    <!--定义触发器Trigger ， 并将触发器与工作任务绑定-->
+    <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean" >
+        <!--指定Trigger名称-->
+        <property name="name" value="trigger1" />
+        <!--指定Trigger group名称-->
+        <property name="group" value="trigger_group1" />
+        <!--指定Trigger编定的JobDetail-->
+        <property name="jobDetail" ref="jobDetail" />
+        <!--指定Cron表达式 ， 多长时间运行一次-->
+        <property name="cronExpression" value="*/5 * * * * ?" />
+    </bean>
+    <!--定义调度器，并将Trigger注册到scheduler中-->
+    <bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" >
+        <property name="triggers">
+            <list>
+                <ref bean="cronTrigger" />
+            </list>
+        </property>
+        <!--添加quartz配置-->
+        <property name="configLocation" value="classpath:quartz.properties" />
+    </bean>
+
+</beans>

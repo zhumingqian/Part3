@@ -6,6 +6,7 @@
     <file type="web" url="file://$PROJECT_DIR$/SpingMVC_1" />
     <file type="web" url="file://$PROJECT_DIR$/Spring_Mybais_Annotation" />
     <file type="web" url="file://$PROJECT_DIR$/Spring_Mybatis" />
+    <file type="web" url="file://$PROJECT_DIR$/spring_quartz" />
     <file type="web" url="file://$PROJECT_DIR$/SSM" />
     <file type="web" url="file://$PROJECT_DIR$/SSM_2" />
   </component>
@@ -27,6 +28,7 @@
         <option value="$PROJECT_DIR$/SSM_2/pom.xml" />
         <option value="$PROJECT_DIR$/quartz/pom.xml" />
         <option value="$PROJECT_DIR$/log/pom.xml" />
+        <option value="$PROJECT_DIR$/spring_quartz/pom.xml" />
       </list>
     </option>
   </component>
